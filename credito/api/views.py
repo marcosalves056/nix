@@ -1,25 +1,34 @@
-from django.contrib.auth.models import User
+from conta_virtual.models import ContaVirtual
 from credito.models import Credito
-from credito.api.serializers import CreditoSerializer, CreditoExtratoSerializer
-from rest_framework import viewsets, generics
-# from .serializers import UserSerializer
+from credito.api.serializers import CreditoSerializer
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import viewsets, generics, status
 
-# class UserViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows users to be viewed or edited.
-#     """
-#     queryset = User.objects.all().order_by('-date_joined')
-#     serializer_class = UserSerializer
 
 class CreditoViewSet(viewsets.ModelViewSet):
 
     queryset = Credito.objects.filter(cod_conta = 1)
     serializer_class = CreditoSerializer
+    
+    def create(self, request, *args, **kwargs):
 
-class CreditoExtratoViewSet(generics.ListAPIView):
+        serializer = self.get_serializer(data=request.data)
+        serializer.initial_data['valor_inicial'] = 0
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        print(self.kwargs)
 
-    def get_queryset(self):
-        queryset = Credito.objects.filter(cod_conta = self.kwargs['pk'])
-        return queryset
+        cod_conta = int((serializer.data['cod_conta']).split('/')[4])
+        conta = ContaVirtual.objects.filter(cod_conta = cod_conta)
+        saldo_credito = conta.first().saldo_credito
+        saldo_atualizado = conta.first().saldo_credito - serializer.data['valor']
+        conta.update(saldo_credito = saldo_atualizado)
 
-    serializer_class = CreditoExtratoSerializer
+        print(saldo_credito)
+        id_credito = Credito.objects.all().order_by('-id_credito').first().id_credito
+        credito = Credito.objects.filter(id_credito = id_credito)
+        credito.update(valor_inicial = saldo_credito)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)      

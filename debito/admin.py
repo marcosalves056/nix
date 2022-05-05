@@ -5,4 +5,3 @@ from .models import *
 
 
 admin.site.register(Debito)
-admin.site.register(HistoricoDebito)

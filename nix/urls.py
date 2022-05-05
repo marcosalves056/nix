@@ -15,18 +15,13 @@ Including another URLconf
 """
 
 from django.contrib import admin
-# from django.urls import path, include
-
-# urlpatterns = [
-    
-#     # path('api-auth/', include('rest_framework.urls'))
-# ]
 
 from django.urls import include, path
 from credito.api import views as credito
 from debito.api import views as debito
 from rest_framework import routers
 from conta_virtual.api import views as conta
+from rest_framework.authtoken import views
 
 router = routers.DefaultRouter()
 router.register(r'users', conta.UserViewSet)
@@ -37,7 +32,10 @@ router.register(r'debito', debito.DebitoViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-    path('conta/<int:pk>/credito/extrato/', credito.CreditoExtratoViewSet.as_view()),
-    path('conta/<int:pk>/debito/extrato/', debito.DebitoExtratoViewSet.as_view())
+
+    path('conta/<int:pk>/credito/', conta.ExtratoCredito.as_view()),
+    path('conta/<int:pk>/debito/', conta.ExtratoDebito.as_view()),
+
+
+    path('api-token-auth/', views.obtain_auth_token),
 ]

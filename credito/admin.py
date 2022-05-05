@@ -5,4 +5,3 @@ from .models import *
 
 
 admin.site.register(Credito)
-admin.site.register(HistoricoCredito)
