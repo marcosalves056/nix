@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "e28a5baf-8e0f-4962-bbd8-a4e0e63fb7b3",
+		"name": "Testes Nix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post debito",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 3cfd5bce1ba62cbb63f6fca2662ae762328898b2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cod_conta\": \"http://127.0.0.1:8000/conta/1/?format=json\",\r\n    \"descricao\": \"primeiro teste debito\",\r\n    \"valor\": 1200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/credito/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"credito",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post credito",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 3cfd5bce1ba62cbb63f6fca2662ae762328898b2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cod_conta\": \"http://127.0.0.1:8000/conta/1/?format=json\",\r\n    \"descricao\": \"print(saldo_atualizado)\",\r\n    \"valor\": 500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/conta/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"conta",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get debito",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 3cfd5bce1ba62cbb63f6fca2662ae762328898b2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/debito/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"debito",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get debito por conta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 3cfd5bce1ba62cbb63f6fca2662ae762328898b2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/conta/1/debito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"conta",
+						"1",
+						"debito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get credito",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 3cfd5bce1ba62cbb63f6fca2662ae762328898b2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/debito/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"debito",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get credito por conta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 3cfd5bce1ba62cbb63f6fca2662ae762328898b2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/conta/1/debito",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"conta",
+						"1",
+						"debito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Conta",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

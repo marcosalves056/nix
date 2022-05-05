@@ -1,0 +1,12 @@
+Dicas para subir o projeto
+
+Ter o python instalado
+
+E seguir os passos dentro da pasta no termina:
+
+1. Estar nesta pasta nix\conta_virtual
+2. pip install -r requirements.txt
+3. python manage.py runserver
+
+E usar as apis descrita no arquivo Testes Nix.postman_collection.json do postaman
+que contem exemplos de implementação
